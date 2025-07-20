@@ -1,4 +1,6 @@
 import { Route } from '@angular/router';
-import { RemoteEntry } from './entry';
+import { UsersComponent } from '../users/users.component';
 
-export const remoteRoutes: Route[] = [{ path: '', component: RemoteEntry }];
+export const remoteRoutes: Route[] = [
+  { path: '', component: UsersComponent }
+];
