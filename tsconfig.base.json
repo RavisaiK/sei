@@ -18,7 +18,8 @@
       "dashboard/Routes": [
         "apps/dashboard/src/app/remote-entry/entry.routes.ts"
       ],
-      "users/Routes": ["apps/users/src/app/remote-entry/entry.routes.ts"]
+      "users/Routes": ["apps/users/src/app/remote-entry/entry.routes.ts"],
+      "@sei/shared": ["libs/shared/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]

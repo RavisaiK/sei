@@ -1,7 +1,7 @@
 import { Injectable, signal, computed } from '@angular/core';
 import axios from 'axios';
 
-interface AuthResponse {
+export interface AuthResponse {
   accessToken: string;
   username: string;
   email: string;
