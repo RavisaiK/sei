@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart } from 'chart.js';
 import { BarController, BarElement, CategoryScale, LinearScale, PieController, ArcElement, LineController, LineElement, PointElement, DoughnutController, RadarController, RadialLinearScale, PolarAreaController } from 'chart.js';
+import { AuthService } from '@sei/shared';
+import { CommonModule } from '@angular/common';
 
 Chart.register(
   BarController, BarElement, CategoryScale, LinearScale,
@@ -18,9 +20,15 @@ Chart.register(
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.scss'],
   standalone: true,
-  imports: [BaseChartDirective]
+  imports: [BaseChartDirective, CommonModule]
 })
 export class ChartsComponent {
+
+  private authService = inject(AuthService);
+
+  get auth() {
+    return this.authService.auth();
+  }
   // Bar Chart
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -29,15 +37,15 @@ export class ChartsComponent {
   public barChartData = {
     labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
     datasets: [
-      { 
-        data: [65, 59, 80, 81, 56, 55, 40], 
+      {
+        data: [65, 59, 80, 81, 56, 55, 40],
         label: 'Series A',
         backgroundColor: 'rgba(54, 162, 235, 0.7)',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 1
       },
-      { 
-        data: [28, 48, 40, 19, 86, 27, 90], 
+      {
+        data: [28, 48, 40, 19, 86, 27, 90],
         label: 'Series B',
         backgroundColor: 'rgba(255, 99, 132, 0.7)',
         borderColor: 'rgba(255, 99, 132, 1)',
@@ -54,7 +62,7 @@ export class ChartsComponent {
   public pieChartData = {
     labels: ['Download Sales', 'In-Store Sales', 'Mail Sales'],
     datasets: [
-      { 
+      {
         data: [300, 500, 100],
         backgroundColor: [
           'rgba(255, 99, 132, 0.7)',

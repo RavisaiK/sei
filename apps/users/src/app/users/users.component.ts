@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import axios from 'axios';
 import { ModalComponent } from '../modal/modal.component';
+import { AuthService } from '@sei/shared';
 
 export interface User {
   firstName: string;
@@ -39,7 +40,13 @@ export class UsersComponent implements OnInit {
     bank: { cardNumber: '', cardExpire: '' }
   };
 
+  private authService = inject(AuthService);
+  
   private cdr = inject(ChangeDetectorRef);
+
+  get auth() {
+    return this.authService.auth();
+  }
 
   ngOnInit() {
     axios.get('https://dummyjson.com/users')
