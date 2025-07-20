@@ -3,6 +3,10 @@ import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Route[] = [
   {
+    path: 'users',
+    loadChildren: () => import('users/Routes').then((m) => m?.remoteRoutes),
+  },
+  {
     path: 'dashboard',
     loadChildren: () => import('dashboard/Routes').then((m) => m?.remoteRoutes),
   },
