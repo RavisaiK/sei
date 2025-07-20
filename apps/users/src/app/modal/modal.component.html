@@ -1,25 +1,25 @@
 <div *ngIf="isOpen" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
   <div class="bg-white p-8 rounded-lg min-w-[320px] shadow-lg w-full max-w-md">
-    <h2 class="text-xl font-semibold mb-4">{{ user ? 'Edit User' : 'Create User' }}</h2>
+    <h2 class="text-xl font-semibold mb-4">{{ user.firstName.length ? 'Edit User' : 'Create User' }}</h2>
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="space-y-4">
       <div>
-        <label for="user-name" class="block text-sm font-medium mb-1">Name</label>
-        <input id="user-name" formControlName="name" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <span *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="text-red-600 text-xs">Name is required (min 2 chars)</span>
+        <label for="firstName" class="block text-sm font-medium mb-1">Name</label>
+        <input id="firstName" formControlName="firstName" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="text-red-600 text-xs">Name is required (min 2 chars)</span>
       </div>
       <div>
-        <label for="user-email" class="block text-sm font-medium mb-1">Email</label>
-        <input id="user-email" formControlName="email" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <label for="email" class="block text-sm font-medium mb-1">Email</label>
+        <input id="email" formControlName="email" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         <span *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-600 text-xs">Valid email required</span>
       </div>
       <div>
-        <label for="user-role" class="block text-sm font-medium mb-1">Role</label>
-        <input id="user-role" formControlName="role" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <label for="role" class="block text-sm font-medium mb-1">Role</label>
+        <input id="role" formControlName="role" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         <span *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched" class="text-red-600 text-xs">Role is required</span>
       </div>
       <div class="flex justify-end gap-3 mt-6">
         <button type="button" (click)="onClose()" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</button>
-        <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">{{ user ? 'Update' : 'Create' }}</button>
+        <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">{{ user.firstName.length ? 'Update' : 'Create' }}</button>
       </div>
     </form>
   </div>

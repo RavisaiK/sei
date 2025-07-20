@@ -1,4 +1,7 @@
 <div class="overflow-x-auto">
+  <div class="flex justify-end items-center mb-4">
+    <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded" (click)="openCreateModal()">Create User</button>
+  </div>
   <table class="min-w-full divide-y divide-gray-200 bg-white shadow-md rounded-lg">
     <thead class="bg-gray-50">
       <tr>
@@ -32,6 +35,12 @@
   <app-user-modal
     [isOpen]="isModalOpen"
     [user]="selectedUser"
+    (modalClose)="closeModal()"
+    (userSave)="saveUser($event)"
+  ></app-user-modal>
+  <app-user-modal
+    [isOpen]="isCreateModalOpen"
+    [user]="newUser"
     (modalClose)="closeModal()"
     (userSave)="saveUser($event)"
   ></app-user-modal>

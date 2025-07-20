@@ -28,7 +28,16 @@ export interface User {
 export class UsersComponent implements OnInit {
   users: User[] = [];
   isModalOpen = false;
+  isCreateModalOpen = false;
   selectedUser: User = {} as User;
+  newUser: User = {
+    id: 0,
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: { department: '', title: '' },
+    bank: { cardNumber: '', cardExpire: '' }
+  };
 
   private cdr = inject(ChangeDetectorRef);
 
@@ -48,8 +57,13 @@ export class UsersComponent implements OnInit {
     this.isModalOpen = true;
   }
 
+  openCreateModal() {
+    this.isCreateModalOpen = true;
+  }
+
   closeModal() {
     this.isModalOpen = false;
+    this.isCreateModalOpen = false;
     this.selectedUser = {} as User;
   }
 
