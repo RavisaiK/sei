@@ -17,6 +17,7 @@ export interface User {
     department: string;
     title: string;
   };
+  role: string
 }
 
 @Component({
@@ -37,11 +38,12 @@ export class UsersComponent implements OnInit {
     lastName: '',
     email: '',
     company: { department: '', title: '' },
-    bank: { cardNumber: '', cardExpire: '' }
+    bank: { cardNumber: '', cardExpire: '' },
+    role: ''
   };
 
   private authService = inject(AuthService);
-  
+
   private cdr = inject(ChangeDetectorRef);
 
   get auth() {
@@ -75,7 +77,10 @@ export class UsersComponent implements OnInit {
   }
 
   saveUser(updatedUser: User) {
-    console.log('User saved:', updatedUser);
-    this.closeModal();
+    if (this.selectedUser.email === updatedUser.email && this.selectedUser.firstName === updatedUser.firstName && this.selectedUser.role === updatedUser.role) {
+      alert('Enter your changes to save the user.');
+    } else{
+      this.closeModal();
+    }
   }
 }
