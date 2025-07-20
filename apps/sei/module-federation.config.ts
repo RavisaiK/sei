@@ -14,7 +14,9 @@ const config: ModuleFederationConfig = {
    * declare module 'my-external-remote';
    *
    */
-  remotes: ['dashboard'],
+  remotes: [
+    ['dashboard', 'http://localhost:4201/remoteEntry.js']
+  ]
 };
 
 /**
