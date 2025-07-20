@@ -1,11 +1,17 @@
 <header class="bg-white shadow flex items-center justify-between px-6 py-4">
   <div class="flex items-center space-x-4">
-    <span class="text-xl font-bold text-gray-800" routerLink="/">SEI</span>
+    <span class="text-xl font-bold text-gray-800">SEI</span>
   </div>
-  <nav class="flex space-x-2">
-    <a routerLink="/dashboard" routerLinkActive="bg-blue-600 text-white" class="px-4 py-2 rounded-full text-gray-700 hover:bg-blue-100 transition-colors font-medium">Dashboard</a>
-    <a routerLink="/users" routerLinkActive="bg-blue-600 text-white" class="px-4 py-2 rounded-full text-gray-700 hover:bg-blue-100 transition-colors font-medium">Users</a>
-  </nav>
+  <ng-container *ngIf="auth as auth">
+    <nav class="flex space-x-2">
+      <a routerLink="/dashboard" routerLinkActive="bg-blue-600 text-white" class="px-4 py-2 rounded-full text-gray-700 hover:bg-blue-100 transition-colors font-medium">Dashboard</a>
+      <a routerLink="/users" routerLinkActive="bg-blue-600 text-white" class="px-4 py-2 rounded-full text-gray-700 hover:bg-blue-100 transition-colors font-medium">Users</a>
+    </nav>
+    <div class="flex items-center space-x-2 ml-4">
+      <img *ngIf="auth.image" [src]="auth.image" alt="Profile" class="w-8 h-8 rounded-full border border-gray-300" />
+      <button type="button" class="font-medium text-gray-700 bg-transparent border-none cursor-pointer focus:outline-none" (click)="logout()">Logout</button>
+    </div>
+  </ng-container>
 </header>
 <main class="p-6">
   <router-outlet></router-outlet>
