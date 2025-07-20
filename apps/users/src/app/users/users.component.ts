@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import axios from 'axios';
+import { ModalComponent } from '../modal/modal.component';
 
-interface User {
+export interface User {
   firstName: string;
   lastName: string;
   email: string;
@@ -21,11 +22,13 @@ interface User {
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
-  imports: [CommonModule],
+  imports: [CommonModule, ModalComponent],
 })
 
 export class UsersComponent implements OnInit {
   users: User[] = [];
+  isModalOpen = false;
+  selectedUser: User = {} as User;
 
   private cdr = inject(ChangeDetectorRef);
 
@@ -38,5 +41,20 @@ export class UsersComponent implements OnInit {
       .catch(error => {
         console.error('Failed to fetch users:', error);
       });
+  }
+
+  openEditModal(user: User) {
+    this.selectedUser = user;
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+    this.selectedUser = {} as User;
+  }
+
+  saveUser(updatedUser: User) {
+    console.log('User saved:', updatedUser);
+    this.closeModal();
   }
 }
