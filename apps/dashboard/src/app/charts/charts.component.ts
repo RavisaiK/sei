@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart } from 'chart.js';
-import { BarController, BarElement, CategoryScale, LinearScale, PieController, ArcElement, Legend, Tooltip } from 'chart.js';
+import { BarController, BarElement, CategoryScale, LinearScale, PieController, ArcElement, LineController, LineElement, PointElement, DoughnutController, RadarController, RadialLinearScale, PolarAreaController } from 'chart.js';
 
 Chart.register(
   BarController, BarElement, CategoryScale, LinearScale,
-  PieController, ArcElement, Legend, Tooltip
+  PieController, ArcElement,
+  LineController, LineElement, PointElement,
+  DoughnutController,
+  RadarController, RadialLinearScale,
+  PolarAreaController
 );
 
 @Component({
@@ -61,6 +65,103 @@ export class ChartsComponent {
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)'
+        ],
+        borderWidth: 1
+      }
+    ]
+  };
+  // Line Chart
+  public lineChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+  };
+  public lineChartType: ChartType = 'line';
+  public lineChartData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        data: [65, 59, 80, 81, 56, 55, 40],
+        label: 'Series A',
+        fill: false,
+        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: 'rgba(75,192,192,0.4)',
+        tension: 0.4
+      }
+    ]
+  };
+
+  // Doughnut Chart
+  public doughnutChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+  };
+  public doughnutChartType: ChartType = 'doughnut';
+  public doughnutChartData = {
+    labels: ['Red', 'Blue', 'Yellow'],
+    datasets: [
+      {
+        data: [120, 150, 90],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(54, 162, 235, 0.7)',
+          'rgba(255, 206, 86, 0.7)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)'
+        ],
+        borderWidth: 1
+      }
+    ]
+  };
+
+  // Radar Chart
+  public radarChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+  };
+  public radarChartType: ChartType = 'radar';
+  public radarChartData = {
+    labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+    datasets: [
+      {
+        label: 'Series A',
+        data: [65, 59, 90, 81, 56, 55, 40],
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        pointBackgroundColor: 'rgba(255, 99, 132, 1)'
+      },
+      {
+        label: 'Series B',
+        data: [28, 48, 40, 19, 96, 27, 100],
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+      }
+    ]
+  };
+
+  // Polar Area Chart
+  public polarAreaChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+  };
+  public polarAreaChartType: ChartType = 'polarArea';
+  public polarAreaChartData = {
+    labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
+    datasets: [
+      {
+        data: [11, 16, 7, 3, 14],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(201, 203, 207, 0.7)',
+          'rgba(54, 162, 235, 0.7)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(201, 203, 207, 1)',
+          'rgba(54, 162, 235, 1)'
         ],
         borderWidth: 1
       }
