@@ -1,6 +1,8 @@
-<header class="bg-white shadow flex items-center justify-between px-6 py-4 header sticky top-0">
+<header class="bg-white dark:bg-black shadow flex items-center justify-between px-6 py-4 header sticky top-0">
   <div class="flex items-center space-x-4">
-    <span class="text-xl font-bold text-gray-800">SEI</span>
+    <span class="text-xl font-bold text-gray-800 dark:text-white">SEI</span>
+    <input type="checkbox" id="theme-toggle" class="mr-1" (change)="setTheme($event.target.checked ? 'dark' : 'light')" />
+    <span class="text-xs text-gray-800 dark:text-white">Toggle Dark Mode</span>
   </div>
   <ng-container *ngIf="auth as auth">
     <nav class="flex space-x-2">
@@ -12,14 +14,14 @@
     <div class="flex items-center space-x-2 ml-4">
       <div class="profile">
         <img *ngIf="auth.image" [src]="auth.image" alt="Profile" class="w-8 h-8 rounded-full border border-gray-300" />
-        <span class="text-gray-800">{{ auth.username }}</span>
+        <span class="text-gray-800 dark:text-white">{{ auth.username }}</span>
         <span *ngIf="auth.isAdmin" class="text-sm text-blue-500 font-semibold">Admin</span>
       </div>
-      <button type="button" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded px-4 py-1"
+      <button type="button" class="px-3 py-2 text-xs font-medium text-center hover:bg-gray-100 hover:dark:bg-gray-800 text-gray-800 dark:text-gray-300 rounded"
         (click)="logout()">Logout</button>
     </div>
   </ng-container>
 </header>
-<main class="p-6">
+<main class="p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
   <router-outlet></router-outlet>
 </main>

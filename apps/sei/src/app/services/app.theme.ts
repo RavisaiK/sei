@@ -1,3 +1,4 @@
+  // app-theme.service.ts
   import { Injectable, signal } from '@angular/core';
 
   export enum AppTheme {
@@ -35,6 +36,11 @@
         localStorage.setItem(this.LS_THEME, theme);
       }
       document.documentElement.classList.toggle('dark', theme === AppTheme.DARK);
+    }
+
+    toggleTheme(): void {
+      const newTheme = this._currentTheme() === AppTheme.DARK ? AppTheme.LIGHT : AppTheme.DARK;
+      this.setTheme(newTheme);
     }
 
     getCurrentTheme(): AppTheme | undefined {

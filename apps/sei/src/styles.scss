@@ -1,1 +1,3 @@
-@use "tailwindcss" as *;
+@use 'tailwind.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
