@@ -1,31 +1,29 @@
 import { ModuleFederationConfig } from '@nx/module-federation';
 
+const coreLibraries = new Set([
+  '@angular/core',
+  '@angular/common',
+  '@sei/shared',
+]);
+
 const config: ModuleFederationConfig = {
   name: 'sei',
-  /**
-   * To use a remote that does not exist in your current Nx Workspace
-   * You can use the tuple-syntax to define your remote
-   *
-   * remotes: [['my-external-remote', 'https://nx-angular-remote.netlify.app']]
-   *
-   * You _may_ need to add a `remotes.d.ts` file to your `src/` folder declaring the external remote for tsc, with the
-   * following content:
-   *
-   * declare module 'my-external-remote';
-   *
-   */
   remotes: [
     ['dashboard', 'http://localhost:4201/remoteEntry.js'],
     ['users', 'http://localhost:4202/remoteEntry.js'],
   ],
-  shared: {
-    '@angular/core': { singleton: true, strictVersion: true },
-    '@angular/common': { singleton: true, strictVersion: true },
-    '@sei/shared': { singleton: true, strictVersion: true }
-  }
+  shared: (libraryName, defaultConfig) => {
+
+    if (coreLibraries.has(libraryName)) {
+      return {
+        ...defaultConfig,
+        singleton: true,
+        strictVersion: true,
+        requiredVersion: 'auto',
+      };
+    }
+    return false;
+  },
 };
 
-/**
- * Nx requires a default export of the config to allow correct resolution of the module federation graph.
- **/
 export default config;
