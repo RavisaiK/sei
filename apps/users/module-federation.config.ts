@@ -5,6 +5,11 @@ const config: ModuleFederationConfig = {
   exposes: {
     './Routes': 'apps/users/src/app/remote-entry/entry.routes.ts',
   },
+  shared: {
+    '@angular/core': { singleton: true, strictVersion: true },
+    '@angular/common': { singleton: true, strictVersion: true },
+    '@sei/shared': { singleton: true, strictVersion: true }
+  }
 };
 
 /**

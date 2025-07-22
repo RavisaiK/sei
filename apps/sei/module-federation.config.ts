@@ -16,7 +16,13 @@ const config: ModuleFederationConfig = {
    */
   remotes: [
     ['dashboard', 'http://localhost:4201/remoteEntry.js'],
-    ['users', 'http://localhost:4202/remoteEntry.js'],],
+    ['users', 'http://localhost:4202/remoteEntry.js'],
+  ],
+  shared: {
+    '@angular/core': { singleton: true, strictVersion: true },
+    '@angular/common': { singleton: true, strictVersion: true },
+    '@sei/shared': { singleton: true, strictVersion: true }
+  }
 };
 
 /**
